@@ -18,3 +18,6 @@ openssl rsa -in rsa_key.p8 -pubout -out rsa_key.pub
 
 --to test connection to source
 dbt run --select test
+
+--to only run macro
+dbt run-operation random_macro
