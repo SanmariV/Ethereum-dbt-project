@@ -1,0 +1,20 @@
+--create virtual environment
+python -m venv venv
+
+--activate virtual environment, only works in PS
+venv\Scripts\activate
+
+pip install dbt-core==1.9.4 dbt-snowflake==1.9.4
+
+dbt --version
+
+dbt init
+
+dbt debug
+
+--key pair authentication: https://docs.snowflake.com/en/user-guide/key-pair-auth
+openssl genrsa 2048 | openssl pkcs8 -topk8 -inform PEM -out rsa_key.p8 -nocrypt
+openssl rsa -in rsa_key.p8 -pubout -out rsa_key.pub
+
+--to test connection to source
+dbt run --select test
